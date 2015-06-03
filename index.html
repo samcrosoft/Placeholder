@@ -20,36 +20,88 @@
 
     <section class="main-content">
       <h1>
-<a id="----welcome-to-samcrosoftplaceholder" class="anchor" href="#----welcome-to-samcrosoftplaceholder" aria-hidden="true"><span class="octicon octicon-link"></span></a>## ### # ### Welcome to Samcrosoft/Placeholder</h1>
+<a id="samcrosoft-placeholder-images" class="anchor" href="#samcrosoft-placeholder-images" aria-hidden="true"><span class="octicon octicon-link"></span></a>Samcrosoft placeholder images</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>This is a simple package that creates image placeholders using the GD Library. It makes it possible to self host a service to create an imge placeholder just like (placehold.it)</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h3>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h3>
+
+<ol>
+<li>PHP GD</li>
+</ol>
+
+<h3>
+<a id="how-to-install" class="anchor" href="#how-to-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Install</h3>
+
+<pre><code> composer require samcrosoft/placeholder:"dev-master"
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>To create a simple image placeholder that would be returned as an http response is simple as described below</p>
+
+<pre><code>  &lt;?php
+  require 'vendor/autoload.php';
+
+  use Samcrosoft\Placeholder\Placeholder;
+  header ("Content-type: image/png");
+
+  /*
+   * Generate an image object
+   */
+  $oPlaceholder = new Placeholder();
+
+  /*
+   * Make a placeholder using parameters from the url
+   */
+  $oImage = $oPlaceholder-&gt;makePlaceholderFromURL();
+
+  // Render image
+  imagepng($oImage);
+
+</code></pre>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="url-parameters" class="anchor" href="#url-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>URL Parameters</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ol>
+<li>
+<strong>width</strong> -&gt; [w] (default is <code>Placeholder::DEFAULT_IMAGE_WIDTH</code> ), this should be an integer</li>
+<li>
+<strong>height</strong> -&gt; [h] (default is <code>Placeholder::DEFAULT_IMAGE_HEIGHT</code> ), this should be an integer also</li>
+<li>
+<strong>Background Color</strong> -&gt; [b] (default is <code>#000</code> which is black), note that when passing the background color as a
+querystring, the <code>#</code> character in the URL should be omitted</li>
+<li>
+<strong>Foreground Color</strong> -&gt; [f] (default is <code>#fff</code> which is white), This represents the color of the text</li>
+<li>
+<strong>Displayed Text</strong> -&gt; [t] (default is <code>width</code>x<code>height</code>
+</li>
+</ol>
+
+<p><strong>Note</strong> : Both foreground and Background colors are expected in hex format e.g (#090, #FFFFFF, #F00) without the (<code>#</code>)</p>
 
 <h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a id="sample-url" class="anchor" href="#sample-url" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample URL</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p><code>http://path_to_endpoint?w=100&amp;h=150&amp;b=090&amp;f=ffffff&amp;t=Sample+Message+To+Show</code></p>
 
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a id="implementations" class="anchor" href="#implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementations</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Placeholder PHP is implemented using a series of php frameworks, or in other languages, the links are listed below</p>
+
+<ol>
+<li>
+<a href="https://github.com/samcrosoft/PHP-Placeholder-Lumen"><strong>PHP Placeholder Lumen</strong></a> - This is an implementation of the php placeholder using laravel Lumen</li>
+</ol>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p><a href="http://samcrosoft.mit-license.org/">http://samcrosoft.mit-license.org/</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/samcrosoft/Placeholder">Placeholder</a> is maintained by <a href="https://github.com/samcrosoft">samcrosoft</a>.</span>
